@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rspec HTML Reports - CIS 6.1 System File Permissions</title>
+
+  <!-- Bootstrap -->
+  <link href="resources/bootstrap-4.0.0-dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="resources/bootstrap-4.0.0-dist/themes/bootstrap-theme-yeti.min.css" rel="stylesheet">
+
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <script src="resources/js/jquery-1.11.1.min.js"></script>
+  <script src="resources/bootstrap-4.0.0-dist/js/bootstrap.min.js"></script>
+  <script src="resources/tether-1.3.3/js/tether.min.js"></script>
+  <script src="resources/js/Chart.js"></script>
+  <style>
+      * {
+          font-size: 14px;
+      }
+
+      .spacer {
+        margin-left: 10px;
+      }
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .cm {
+  color: #999988;
+  font-style: italic;
+}
+.highlight .cp {
+  color: #999999;
+  font-weight: bold;
+}
+.highlight .c1 {
+  color: #999988;
+  font-style: italic;
+}
+.highlight .cs {
+  color: #999999;
+  font-weight: bold;
+  font-style: italic;
+}
+.highlight .c, .highlight .cd {
+  color: #999988;
+  font-style: italic;
+}
+.highlight .err {
+  color: #a61717;
+  background-color: #e3d2d2;
+}
+.highlight .gd {
+  color: #000000;
+  background-color: #ffdddd;
+}
+.highlight .ge {
+  color: #000000;
+  font-style: italic;
+}
+.highlight .gr {
+  color: #aa0000;
+}
+.highlight .gh {
+  color: #999999;
+}
+.highlight .gi {
+  color: #000000;
+  background-color: #ddffdd;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+  font-weight: bold;
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .gt {
+  color: #aa0000;
+}
+.highlight .kc {
+  color: #000000;
+  font-weight: bold;
+}
+.highlight .kd {
+  color: #000000;
+  font-weight: bold;
+}
+.highlight .kn {
+  color: #000000;
+  font-weight: bold;
+}
+.highlight .kp {
+  color: #000000;
+  font-weight: bold;
+}
+.highlight .kr {
+  color: #000000;
+  font-weight: bold;
+}
+.highlight .kt {
+  color: #445588;
+  font-weight: bold;
+}
+.highlight .k, .highlight .kv {
+  color: #000000;
+  font-weight: bold;
+}
+.highlight .mf {
+  color: #009999;
+}
+.highlight .mh {
+  color: #009999;
+}
+.highlight .il {
+  color: #009999;
+}
+.highlight .mi {
+  color: #009999;
+}
+.highlight .mo {
+  color: #009999;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #009999;
+}
+.highlight .sb {
+  color: #d14;
+}
+.highlight .sc {
+  color: #d14;
+}
+.highlight .sd {
+  color: #d14;
+}
+.highlight .s2 {
+  color: #d14;
+}
+.highlight .se {
+  color: #d14;
+}
+.highlight .sh {
+  color: #d14;
+}
+.highlight .si {
+  color: #d14;
+}
+.highlight .sx {
+  color: #d14;
+}
+.highlight .sr {
+  color: #009926;
+}
+.highlight .s1 {
+  color: #d14;
+}
+.highlight .ss {
+  color: #990073;
+}
+.highlight .s {
+  color: #d14;
+}
+.highlight .na {
+  color: #008080;
+}
+.highlight .bp {
+  color: #999999;
+}
+.highlight .nb {
+  color: #0086B3;
+}
+.highlight .nc {
+  color: #445588;
+  font-weight: bold;
+}
+.highlight .no {
+  color: #008080;
+}
+.highlight .nd {
+  color: #3c5d5d;
+  font-weight: bold;
+}
+.highlight .ni {
+  color: #800080;
+}
+.highlight .ne {
+  color: #990000;
+  font-weight: bold;
+}
+.highlight .nf {
+  color: #990000;
+  font-weight: bold;
+}
+.highlight .nl {
+  color: #990000;
+  font-weight: bold;
+}
+.highlight .nn {
+  color: #555555;
+}
+.highlight .nt {
+  color: #000080;
+}
+.highlight .vc {
+  color: #008080;
+}
+.highlight .vg {
+  color: #008080;
+}
+.highlight .vi {
+  color: #008080;
+}
+.highlight .nv {
+  color: #008080;
+}
+.highlight .ow {
+  color: #000000;
+  font-weight: bold;
+}
+.highlight .o {
+  color: #000000;
+  font-weight: bold;
+}
+.highlight .w {
+  color: #bbbbbb;
+}
+.highlight {
+  background-color: #f8f8f8;
+}
+
+button.toggle_error {
+  width:20px;
+  float: right;
+  border:1px black solid;
+  color: black;
+}
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <div class="bs-docs-section clearfix">
+    <div class="row">
+      <div class="col-lg-12">
+
+        <div class="bs-component">
+          <div class="navbar navbar-inverse">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav">
+                <li><a href="..">&#128194;</a></li>
+              </ul>
+              <ul class="nav navbar-nav">
+                <li><a href="overview.html">Overview</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="text-center" style="font-size:2em;">CIS 6.1 System File Permissions</p>
+  <script>
+  function toggleRuleDisplay(cb) {
+    var rules = 'span.label-'+cb.value;
+    var status= cb.checked;
+    if (status) {
+      $(rules).closest('tr').show();
+    } else {
+      $(rules).closest('tr').hide();
+    }
+  }
+  function toggleErrorDisplay(b) {
+    var status=$(b).text();
+    if (status == '-') {
+      $(b).parent().next().show();
+      $(b).text('+');
+    } else {
+      $(b).parent().next().hide();
+      $(b).text('-');
+    }
+  }
+  </script>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="col-md-4">
+        <div class="panel panel-default">
+
+          <div class="panel-heading">Group Summary</div>
+          <div class="panel-body">
+            <span class="pull-right">30 Examples</span>
+            <canvas id="pieChart" width="300" height="300"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- TODO: make this only appear if os[:family] is defined -->
+      <div class="col-md-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">OS Description</div>
+          <div class="panel-body">
+            <table class="table table-striped table-hover ">
+            <tbody>
+            <tr><th>OS</th><td>ubuntu</td></tr>
+            <tr><th>Release</th><td>18.04</td></tr>
+            <tr><th>Arch</th><td>x86_64</td></tr>
+            <tr><th>Cloud</th><td>AZ</td></tr>
+            <tr><th>Target</th><td>51.140.231.26</td></tr>
+            </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-md-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">Filter rules by their result</div>
+          <div class="panel-body">
+            <div class="checkbox"><label><input class="toggle-rule-display" type="checkbox" onclick="toggleRuleDisplay(this)" checked="" value="success">pass</label></div>
+            <div class="checkbox"><label><input class="toggle-rule-display" type="checkbox" onclick="toggleRuleDisplay(this)" checked="" value="warning">pending</label></div>
+            <div class="checkbox"><label><input class="toggle-rule-display" type="checkbox" onclick="toggleRuleDisplay(this)" checked="" value="danger">failed</label></div></div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+    </div>
+
+    <p class="text-center" style="font-size:12px;">Execution Date: 2019-07-05 17:23:58 +0100</p>
+    <div class="col-lg-12">
+      <table class="table table-striped table-hover ">
+        <thead>
+        <tr>
+          <th>#</th>
+          <th>Example</th>
+          <th>Duration</th>
+          <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        
+            <tr>
+              <td id="example_1">1</td>
+              <td width="100%">
+                <div>
+                      <div class="panel panel-success">
+                        <div class="panel-heading">
+                        <h3 class="panel-title pull-left"> 6.1.10 Ensure no world writable files exit</h3>
+                          
+                          
+                          <div class="clearfix"></div>
+                        </div>
+
+                        
+
+                        
+                      </div>
+                </div>
+                <div>
+                  
+                </div>
+              </td>
+              <td>0.23170</td>
+              <td><span class="label label-success">passed</span></td>
+            </tr>
+        
+            <tr>
+              <td id="example_2">2</td>
+              <td width="100%">
+                <div>
+                      <div class="panel panel-success">
+                        <div class="panel-heading">
+                        <h3 class="panel-title pull-left"> 6.1.11 Ensure no unowned files or directories exist</h3>
+                          
+                          
+                          <div class="clearfix"></div>
+                        </div>
+
+                        
+
+                        
+                      </div>
+                </div>
+                <div>
+                  
+                </div>
+              </td>
+              <td>0.23718</td>
+              <td><span class="label label-success">passed</span></td>
+            </tr>
+        
+            <tr>
+              <td id="example_3">3</td>
+              <td width="100%">
+                <div>
+                      <div class="panel panel-success">
+                        <div class="panel-heading">
+                        <h3 class="panel-title pull-left"> 6.1.12 Ensure no ungrouped files or directories exist</h3>
+                          
+                          
+                          <div class="clearfix"></div>
+                        </div>
+
+                        
+
+                        
+                      </div>
+                </div>
+                <div>
+                  
+                </div>
+              </td>
+              <td>0.24376</td>
+              <td><span class="label label-success">passed</span></td>
+            </tr>
+        
+            <tr>
+              <td id="example_4">4</td>
+              <td width="100%">
+                <div>
+                      <div class="panel panel-success">
+                        <div class="panel-heading">
+                        <h3 class="panel-title pull-left"> 6.1.13 Audit SUID Executables</h3>
+                          
+                          
+                          <div class="clearfix"></div>
+                        </div>
+
+                        
+
+                        
+                      </div>
+                </div>
+                <div>
+                  
+                </div>
+              </td>
+              <td>0.24679</td>
+              <td><span class="label label-success">passed</span></td>
+            </tr>
+        
+            <tr>
+              <td id="example_5">5</td>
+              <td width="100%">
+                <div>
+                      <div class="panel panel-success">
+                        <div class="panel-heading">
+                        <h3 class="panel-title pull-left"> 6.1.14 Audit SGID Executables</h3>
+                          
+                          
+                          <div class="clearfix"></div>
+                        </div>
+
+                        
+
+                        
+                      </div>
+                </div>
+                <div>
+                  
+                </div>
+              </td>
+              <td>0.24901</td>
+              <td><span class="label label-success">passed</span></td>
+            </tr>
+        
+            <tr>
+              <td id="example_6">6</td>
+              <td width="100%">
+                <div>
+                      <div class="panel panel-success">
+                        <div class="panel-heading">
+                        <h3 class="panel-title pull-left"> 6.1.1 Audit system file permissions debsums returns empty</h3>
+                          
+                          
+                          <div class="clearfix"></div>
+                        </div>
+
+                        
+
+                        
+                      </div>
+                </div>
+                <div>
+                  
+                </div>
+              </td>
+              <td>6.05736</td>
+              <td><span class="label label-success">passed</span></td>
+            </tr>
+        
+            <tr>
+              <td id="example_7">7</td>
+              <td width="100%">
+                <div>
+                      <div class="panel panel-success">
+                        <div class="panel-heading">
+                        <h3 class="panel-title pull-left"> 6.1.2 Ensure permissions on /etc/passwd are configured File "/etc/passwd" should be mode "644"</h3>
+                          
+                          
+                          <div class="clearfix"></div>
+                        </div>
+
+                        
+
+                        
+                      </div>
+                </div>
+                <div>
+                  
+                </div>
+              </td>
+              <td>0.22229</td>
+              <td><span class="label label-success">passed</span></td>
+            </tr>
+        
+            <tr>
+              <td id="example_8">8</td>
+              <td width="100%">
+                <div>
+                      <div class="panel panel-success">
+                        <div class="panel-heading">
+                        <h3 class="panel-title pull-left"> 6.1.2 Ensure permissions on /etc/passwd are configured File "/etc/passwd" should be owned by "root"</h3>
+                          
+                          
+                          <div class="clearfix"></div>
+                        </div>
+
+                        
+
+                        
+                      </div>
+                </div>
+                <div>
+                  
+                </div>
+              </td>
+              <td>0.22510</td>
+              <td><span class="label label-success">passed</span></td>
+            </tr>
+        
+            <tr>
+              <td id="example_9">9</td>
+              <td width="100%">
+                <div>
+                      <div class="panel panel-success">
+                        <div class="panel-heading">
+                        <h3 class="panel-title pull-left"> 6.1.2 Ensure permissions on /etc/passwd are configured File "/etc/passwd" should be grouped into "root"</h3>
+                          
+                          
+                          <div class="clearfix"></div>
+                        </div>
+
+                        
+
+                        
+                      </div>
+                </div>
+                <div>
+                  
+                </div>
+              </td>
+              <td>0.22697</td>
+              <td><span class="label label-success">passed</span></td>
+            </tr>
+        
+            <tr>
+              <td id="example_10">10</td>
+              <td width="100%">
+                <div>
+                      <div class="panel panel-success">
+                        <div class="panel-heading">
+                        <h3 class="panel-title pull-left"> 6.1.3 Ensure permissions on /etc/shadow are configured File "/etc/shadow" should be owned by "root"</h3>
+                          
+                          
+                          <div class="clearfix"></div>
+                        </div>
+
+                        
+
+                        
+                      </div>
+                </div>
+                <div>
+                  
+                </div>
+              </td>
+              <td>0.21885</td>
+              <td><span class="label label-success">passed</span></td>
+            </tr>
+        
+            <tr>
+              <td id="example_11">11</td>
+              <td width="100%">
+                <div>
+                      <div class="panel panel-success">
+                        <div class="panel-heading">
+                        <h3 class="panel-title pull-left"> 6.1.3 Ensure permissions on /etc/shadow are configured File "/etc/shadow" should be mode "640"</h3>
+                          
+                          
+                          <div class="clearfix"></div>
+                        </div>
+
+                        
+
+                        
+                      </div>
+                </div>
+                <div>
+                  
+                </div>
+              </td>
+              <td>0.22299</td>
+              <td><span class="label label-success">passed</span></td>
+            </tr>
+        
+            <tr>
+              <td id="example_12">12</td>
+              <td width="100%">
+                <div>
+                      <div class="panel panel-success">
+                        <div class="panel-heading">
+                        <h3 class="panel-title pull-left"> 6.1.3 Ensure permissions on /etc/shadow are configured File "/etc/shadow" should be grouped into "shadow"</h3>
+                          
+                          
+                          <div class="clearfix"></div>
+                        </div>
+
+                        
+
+                        
+                      </div>
+                </div>
+                <div>
+                  
+                </div>
+              </td>
+              <td>0.22084</td>
+              <td><span class="label label-success">passed</span></td>
+            </tr>
+        
+            <tr>
+              <td id="example_13">13</td>
+              <td width="100%">
+                <div>
+                      <div class="panel panel-success">
+                        <div class="panel-heading">
+                        <h3 class="panel-title pull-left"> 6.1.4 Ensure permissions on /etc/group are configured File "/etc/group" should be mode "644"</h3>
+                          
+                          
+                          <div class="clearfix"></div>
+                        </div>
+
+                        
+
+                        
+                      </div>
+                </div>
+                <div>
+                  
+                </div>
+              </td>
+              <td>0.22767</td>
+              <td><span class="label label-success">passed</span></td>
+            </tr>
+        
+            <tr>
+              <td id="example_14">14</td>
+              <td width="100%">
+                <div>
+                      <div class="panel panel-success">
+                        <div class="panel-heading">
+                        <h3 class="panel-title pull-left"> 6.1.4 Ensure permissions on /etc/group are configured File "/etc/group" should be owned by "root"</h3>
+                          
+                          
+                          <div class="clearfix"></div>
+                        </div>
+
+                        
+
+                        
+                      </div>
+                </div>
+                <div>
+                  
+                </div>
+              </td>
+              <td>0.22777</td>
+              <td><span class="label label-success">passed</span></td>
+            </tr>
+        
+            <tr>
+              <td id="example_15">15</td>
+              <td width="100%">
+                <div>
+                      <div class="panel panel-success">
+                        <div class="panel-heading">
+                        <h3 class="panel-title pull-left"> 6.1.4 Ensure permissions on /etc/group are configured File "/etc/group" should be grouped into "root"</h3>
+                          
+                          
+                          <div class="clearfix"></div>
+                        </div>
+
+                        
+
+                        
+                      </div>
+                </div>
+                <div>
+                  
+                </div>
+              </td>
+              <td>0.22275</td>
+              <td><span class="label label-success">passed</span></td>
+            </tr>
+        
+            <tr>
+              <td id="example_16">16</td>
+              <td width="100%">
+                <div>
+                      <div class="panel panel-success">
+                        <div class="panel-heading">
+                        <h3 class="panel-title pull-left"> 6.1.5 Ensure permissions on /etc/gshadow are configured File "/etc/gshadow" should be owned by "root"</h3>
+                          
+                          
+                          <div class="clearfix"></div>
+                        </div>
+
+                        
+
+                        
+                      </div>
+                </div>
+                <div>
+                  
+                </div>
+              </td>
+              <td>0.22846</td>
+              <td><span class="label label-success">passed</span></td>
+            </tr>
+        
+            <tr>
+              <td id="example_17">17</td>
+              <td width="100%">
+                <div>
+                      <div class="panel panel-success">
+                        <div class="panel-heading">
+                        <h3 class="panel-title pull-left"> 6.1.5 Ensure permissions on /etc/gshadow are configured File "/etc/gshadow" should be mode "640"</h3>
+                          
+                          
+                          <div class="clearfix"></div>
+                        </div>
+
+                        
+
+                        
+                      </div>
+                </div>
+                <div>
+                  
+                </div>
+              </td>
+              <td>0.22078</td>
+              <td><span class="label label-success">passed</span></td>
+            </tr>
+        
+            <tr>
+              <td id="example_18">18</td>
+              <td width="100%">
+                <div>
+                      <div class="panel panel-success">
+                        <div class="panel-heading">
+                        <h3 class="panel-title pull-left"> 6.1.5 Ensure permissions on /etc/gshadow are configured File "/etc/gshadow" should be grouped into "shadow"</h3>
+                          
+                          
+                          <div class="clearfix"></div>
+                        </div>
+
+                        
+
+                        
+                      </div>
+                </div>
+                <div>
+                  
+                </div>
+              </td>
+              <td>0.23013</td>
+              <td><span class="label label-success">passed</span></td>
+            </tr>
+        
+            <tr>
+              <td id="example_19">19</td>
+              <td width="100%">
+                <div>
+                      <div class="panel panel-success">
+                        <div class="panel-heading">
+                        <h3 class="panel-title pull-left"> 6.1.6 Ensure permissions on /etc/passwd- are configured File "/etc/passwd-" should be mode "644"</h3>
+                          
+                          
+                          <div class="clearfix"></div>
+                        </div>
+
+                        
+
+                        
+                      </div>
+                </div>
+                <div>
+                  
+                </div>
+              </td>
+              <td>0.23108</td>
+              <td><span class="label label-success">passed</span></td>
+            </tr>
+        
+            <tr>
+              <td id="example_20">20</td>
+              <td width="100%">
+                <div>
+                      <div class="panel panel-success">
+                        <div class="panel-heading">
+                        <h3 class="panel-title pull-left"> 6.1.6 Ensure permissions on /etc/passwd- are configured File "/etc/passwd-" should be owned by "root"</h3>
+                          
+                          
+                          <div class="clearfix"></div>
+                        </div>
+
+                        
+
+                        
+                      </div>
+                </div>
+                <div>
+                  
+                </div>
+              </td>
+              <td>0.22240</td>
+              <td><span class="label label-success">passed</span></td>
+            </tr>
+        
+            <tr>
+              <td id="example_21">21</td>
+              <td width="100%">
+                <div>
+                      <div class="panel panel-success">
+                        <div class="panel-heading">
+                        <h3 class="panel-title pull-left"> 6.1.6 Ensure permissions on /etc/passwd- are configured File "/etc/passwd-" should be grouped into "root"</h3>
+                          
+                          
+                          <div class="clearfix"></div>
+                        </div>
+
+                        
+
+                        
+                      </div>
+                </div>
+                <div>
+                  
+                </div>
+              </td>
+              <td>0.22995</td>
+              <td><span class="label label-success">passed</span></td>
+            </tr>
+        
+            <tr>
+              <td id="example_22">22</td>
+              <td width="100%">
+                <div>
+                      <div class="panel panel-success">
+                        <div class="panel-heading">
+                        <h3 class="panel-title pull-left"> 6.1.7 Ensure permissions on /etc/shadow- are configured File "/etc/shadow-" should be owned by "root"</h3>
+                          
+                          
+                          <div class="clearfix"></div>
+                        </div>
+
+                        
+
+                        
+                      </div>
+                </div>
+                <div>
+                  
+                </div>
+              </td>
+              <td>0.23015</td>
+              <td><span class="label label-success">passed</span></td>
+            </tr>
+        
+            <tr>
+              <td id="example_23">23</td>
+              <td width="100%">
+                <div>
+                      <div class="panel panel-success">
+                        <div class="panel-heading">
+                        <h3 class="panel-title pull-left"> 6.1.7 Ensure permissions on /etc/shadow- are configured File "/etc/shadow-" should be mode "640"</h3>
+                          
+                          
+                          <div class="clearfix"></div>
+                        </div>
+
+                        
+
+                        
+                      </div>
+                </div>
+                <div>
+                  
+                </div>
+              </td>
+              <td>0.22690</td>
+              <td><span class="label label-success">passed</span></td>
+            </tr>
+        
+            <tr>
+              <td id="example_24">24</td>
+              <td width="100%">
+                <div>
+                      <div class="panel panel-success">
+                        <div class="panel-heading">
+                        <h3 class="panel-title pull-left"> 6.1.7 Ensure permissions on /etc/shadow- are configured File "/etc/shadow-" should be grouped into "shadow"</h3>
+                          
+                          
+                          <div class="clearfix"></div>
+                        </div>
+
+                        
+
+                        
+                      </div>
+                </div>
+                <div>
+                  
+                </div>
+              </td>
+              <td>0.23222</td>
+              <td><span class="label label-success">passed</span></td>
+            </tr>
+        
+            <tr>
+              <td id="example_25">25</td>
+              <td width="100%">
+                <div>
+                      <div class="panel panel-success">
+                        <div class="panel-heading">
+                        <h3 class="panel-title pull-left"> 6.1.8 Ensure permissions on /etc/group- are configured File "/etc/group-" should be mode "644"</h3>
+                          
+                          
+                          <div class="clearfix"></div>
+                        </div>
+
+                        
+
+                        
+                      </div>
+                </div>
+                <div>
+                  
+                </div>
+              </td>
+              <td>0.22658</td>
+              <td><span class="label label-success">passed</span></td>
+            </tr>
+        
+            <tr>
+              <td id="example_26">26</td>
+              <td width="100%">
+                <div>
+                      <div class="panel panel-success">
+                        <div class="panel-heading">
+                        <h3 class="panel-title pull-left"> 6.1.8 Ensure permissions on /etc/group- are configured File "/etc/group-" should be owned by "root"</h3>
+                          
+                          
+                          <div class="clearfix"></div>
+                        </div>
+
+                        
+
+                        
+                      </div>
+                </div>
+                <div>
+                  
+                </div>
+              </td>
+              <td>0.23067</td>
+              <td><span class="label label-success">passed</span></td>
+            </tr>
+        
+            <tr>
+              <td id="example_27">27</td>
+              <td width="100%">
+                <div>
+                      <div class="panel panel-success">
+                        <div class="panel-heading">
+                        <h3 class="panel-title pull-left"> 6.1.8 Ensure permissions on /etc/group- are configured File "/etc/group-" should be grouped into "root"</h3>
+                          
+                          
+                          <div class="clearfix"></div>
+                        </div>
+
+                        
+
+                        
+                      </div>
+                </div>
+                <div>
+                  
+                </div>
+              </td>
+              <td>0.23337</td>
+              <td><span class="label label-success">passed</span></td>
+            </tr>
+        
+            <tr>
+              <td id="example_28">28</td>
+              <td width="100%">
+                <div>
+                      <div class="panel panel-success">
+                        <div class="panel-heading">
+                        <h3 class="panel-title pull-left"> 6.1.9 Ensure permissions on /etc/gshadow- are configured File "/etc/gshadow-" should be owned by "root"</h3>
+                          
+                          
+                          <div class="clearfix"></div>
+                        </div>
+
+                        
+
+                        
+                      </div>
+                </div>
+                <div>
+                  
+                </div>
+              </td>
+              <td>0.28118</td>
+              <td><span class="label label-success">passed</span></td>
+            </tr>
+        
+            <tr>
+              <td id="example_29">29</td>
+              <td width="100%">
+                <div>
+                      <div class="panel panel-success">
+                        <div class="panel-heading">
+                        <h3 class="panel-title pull-left"> 6.1.9 Ensure permissions on /etc/gshadow- are configured File "/etc/gshadow-" should be mode "640"</h3>
+                          
+                          
+                          <div class="clearfix"></div>
+                        </div>
+
+                        
+
+                        
+                      </div>
+                </div>
+                <div>
+                  
+                </div>
+              </td>
+              <td>0.23255</td>
+              <td><span class="label label-success">passed</span></td>
+            </tr>
+        
+            <tr>
+              <td id="example_30">30</td>
+              <td width="100%">
+                <div>
+                      <div class="panel panel-success">
+                        <div class="panel-heading">
+                        <h3 class="panel-title pull-left"> 6.1.9 Ensure permissions on /etc/gshadow- are configured File "/etc/gshadow-" should be grouped into "shadow"</h3>
+                          
+                          
+                          <div class="clearfix"></div>
+                        </div>
+
+                        
+
+                        
+                      </div>
+                </div>
+                <div>
+                  
+                </div>
+              </td>
+              <td>0.23583</td>
+              <td><span class="label label-success">passed</span></td>
+            </tr>
+        
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  var pieCtx = document.getElementById("pieChart");
+
+  var pieChart = new Chart(pieCtx, {
+    type: 'doughnut',
+    data: {
+      labels: ["Passed (30)", "Failed (0)", "Pending (0)"],
+      datasets: [{
+        label: 'Examples',
+        data: [30, 0, 0],
+
+        backgroundColor: [
+          '#3c9a5f',
+          '#ea2f10',
+          '#e99002'
+        ],
+        borderColor: [
+          'rgba(255,99,132,1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)'
+          ],
+        borderWidth: 1
+      }]
+    },
+  });
+
+  function toggler(divId) {
+    $("#" + divId).slideToggle();
+  }
+</script>
+
+Rspec HTML Reports <author>This version by: Nicholas Cross @mohclips - originally @vbanthia and before that @kingsleyh</author>
+</body>
+</html>
